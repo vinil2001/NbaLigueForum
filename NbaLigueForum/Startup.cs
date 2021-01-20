@@ -12,7 +12,7 @@ using NbaLigueForum.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ForumCore.Data;
+using NbaLigueForum.Service;
 
 namespace NbaLigueForum
 {
@@ -35,6 +35,7 @@ namespace NbaLigueForum
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddScoped<IForum, ForumService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

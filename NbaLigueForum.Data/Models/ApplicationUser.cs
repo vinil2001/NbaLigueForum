@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ForumCore.Data.Models
+namespace NbaLigueForum.Data.Models
 {
     public class ApplicationUser : IdentityUser
     {

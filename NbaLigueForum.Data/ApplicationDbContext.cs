@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ForumCore.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using NbaLigueForum.Data.Models;
 
-namespace ForumCore.Data
+namespace NbaLigueForum.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

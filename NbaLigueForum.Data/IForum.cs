@@ -1,10 +1,10 @@
-﻿using ForumCore.Data.Models;
+﻿using NbaLigueForum.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ForumCore.Data
+namespace NbaLigueForum.Data
 {
     public interface IForum
     {
