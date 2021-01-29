@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NbaLigueForum.Data;
+using NbaLigueForum.Models;
 using NbaLigueForum.Service;
 
 namespace NbaLigueForum.Controllers
@@ -21,8 +22,22 @@ namespace NbaLigueForum.Controllers
         // GET: ForumController
         public ActionResult Index()
         {
-            var forums = _forumService.GetAll();
-            return View(forums);
+            IEnumerable<ForumViewModel> allForums = _forumService.GetAll().Select(forum => new ForumViewModel
+            {
+                Id = forum.Id,
+                Name = forum.Title,
+                Description = forum.Description
+            });
+
+            ForumsIndexViewModel model = new ForumsIndexViewModel
+            {
+                ForumList = allForums
+            };
+
+            return View(model);
+
+            //var forums = _forumService.GetAll();
+            //return View(forums);
         }
 
         // GET: ForumController/Details/5

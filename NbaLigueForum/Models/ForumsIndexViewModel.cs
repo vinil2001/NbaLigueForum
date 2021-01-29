@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace NbaLigueForum.Models
 {
-    public class ForumIndexViewModel
+    public class ForumsIndexViewModel
     {
         public IEnumerable<ForumViewModel> ForumList { get; set; }
     }
