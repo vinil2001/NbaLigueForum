@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NbaLigueForum.Data;
+using NbaLigueForum.Data.Models;
 using NbaLigueForum.Models;
 using NbaLigueForum.Service;
 
@@ -35,9 +36,50 @@ namespace NbaLigueForum.Controllers
             };
 
             return View(model);
+        }
 
-            //var forums = _forumService.GetAll();
-            //return View(forums);
+        public IActionResult Topic(int id)
+        {
+            var forum = _forumService.GetById(id);
+
+            var posts = forum.Posts;
+
+            IEnumerable<PostViewModel> postsViewModel = posts.Select(post => new PostViewModel
+            {
+                Id = post.Id,
+                AuthorId = post.User.Id,
+                AuthorRating = post.User.Ratting,
+                Title = post.Title,
+                DatePosted = post.Created.ToString(),
+                RepliesCount = post.PostReplies.Count(),
+                Forum = BuildForumListString(post)
+            });
+
+            var Model = new ForumTopicModel
+            {
+                Posts = postsViewModel,
+                Forum = BuildForumListString(forum)
+            };
+
+            return View(Model);
+        }
+
+        private ForumViewModel BuildForumListString(Post post)
+        {
+            Forum forum = post.Forum;
+
+            return BuildForumListString(forum);
+        }
+
+        private ForumViewModel BuildForumListString(Forum forum)
+        {
+            return new ForumViewModel
+            {
+                Id = forum.Id,
+                Description = forum.Description,
+                ImageUrl = forum.ImageUrl,
+                Name = forum.Title
+            };
         }
 
         // GET: ForumController/Details/5
