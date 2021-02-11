@@ -3,6 +3,7 @@ using NbaLigueForum.Data;
 using NbaLigueForum.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,7 +38,20 @@ namespace NbaLigueForum.Service
 
         public Forum GetById(int id)
         {
-            return _context.Forums.Find(id);
+            //var forum = _context.Forums
+            //    .Where(f => f.Id == id)
+            //    .Include(f => f.Posts)
+            //    .ThenInclude(f => f.User)
+            //    .Include(f => f.Posts)
+            //    .ThenInclude(f => f.PostReplies)
+            //    .ThenInclude(f => f.User)
+            //    .Include(f => f.Posts)
+            //    .ThenInclude(f => f.Forum)
+            //    .FirstOrDefault();
+            var forum = _context.Forums.Find(id);
+            if (forum.Posts == null)
+                forum.Posts = new List<Post>();
+            return forum;
         }
 
         public Task UpdateForumDescription(int forumId, string newForumDescription)
