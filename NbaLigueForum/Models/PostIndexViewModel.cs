@@ -15,6 +15,6 @@ namespace NbaLigueForum.Models
         public int AuthorRating { get; set; }
         public DateTime Created { get; set; }
         public string PostContent { get; set; }
-        public IEnumerable<PostReplyViewModel> PostReplies { get; set; }
+        public IEnumerable<PostReplyModel> PostReplies { get; set; }
     }
 }

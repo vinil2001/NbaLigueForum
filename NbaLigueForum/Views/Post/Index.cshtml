@@ -1,0 +1,30 @@
+﻿@model PostIndexViewModel
+
+<h1>@Model.Title</h1>
+
+<div>
+    Author: @Model.AuthorName (@Model.AuthorRating)
+    Created: @Model.Created
+</div>
+
+<div>
+    @Model.PostContent
+</div>
+
+@if (Model.PostReplies.Any())
+{
+    foreach (var reply in Model.PostReplies)
+    {
+        <div>
+            <div>
+                @reply.AuthorName (@reply.AuthorRating)
+            </div>
+
+            <div>
+                @reply.ReplyContent
+            </div>
+        </div>
+
+    }
+}
+
